@@ -8,7 +8,11 @@ public class TimeBasedEvaluator extends ContextAwareBase implements EventEvaluat
 	private long beforeTime = 0;
 	
 	private long intervalTime = 1000 * 60 * 5;
-
+	
+	private boolean isStarted = false;
+	
+	private String name;
+	
 	@Override
 	public boolean evaluate(Object event) throws NullPointerException, EvaluationException {
 		long current = System.currentTimeMillis();
@@ -20,34 +24,24 @@ public class TimeBasedEvaluator extends ContextAwareBase implements EventEvaluat
 		}
 		return false;
 	}
-
-	@Override
-	public void start() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void stop() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public boolean isStarted() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
+	
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		return name;
 	}
 
-	@Override
 	public void setName(String name) {
-		// TODO Auto-generated method stub
-		
+		this.name = name;
 	}
+	
+	public boolean isStarted() {
+        return isStarted;
+    }
+
+    public void start() {
+        isStarted = true;
+    }
+
+    public void stop() {
+        isStarted = false;
+    }
 }

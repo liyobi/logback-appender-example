@@ -13,6 +13,8 @@ public class CounterBasedEvaluator extends ContextAwareBase implements EventEval
 	static int LIMIT = 1024;
 	int counter = 0;
 	String name;
+	private boolean isStarted = false;
+	
 	@Override
 	public boolean evaluate(Object event) throws NullPointerException,	EvaluationException {
 		counter++;
@@ -34,22 +36,16 @@ public class CounterBasedEvaluator extends ContextAwareBase implements EventEval
 		this.name = name;
 	}
 
-	@Override
-	public void start() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void stop() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public boolean isStarted() {
-		// TODO Auto-generated method stub
-		return false;
-	}
+        return isStarted;
+    }
+
+    public void start() {
+        isStarted = true;
+    }
+
+    public void stop() {
+        isStarted = false;
+    }
 
 }
