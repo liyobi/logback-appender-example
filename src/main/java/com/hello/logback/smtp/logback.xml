@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="30 seconds" >
+	<statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener" />  
+	
+	<appender name="EMAIL" class="ch.qos.logback.classic.net.SMTPAppender">
+		<evaluator class="com.hello.logback.smtp.CounterBasedEvaluator" />
+	    <smtpHost>smtp.gmail.com</smtpHost>
+	    <!-- ssl -->
+	    <smtpPort>465</smtpPort>
+	    <SSL>true</SSL>
+	    <!-- 
+	    <smtpPort>587</smtpPort>
+	    <STARTTLS>true</STARTTLS>
+	     -->
+	    <asynchronousSending>false</asynchronousSending>
+	    <username>xxxx</username>
+        <password>xxxx</password> 
+	    <to>yyyy@gmail.com</to>
+	    <subject>TEST-LOG: %logger{20} - %m</subject>
+	    <layout class="ch.qos.logback.classic.PatternLayout">
+	        <Pattern>
+	        %d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n
+	        </Pattern>
+	    </layout>
+	</appender>
+
+	 
+	<root level="debug" >
+		<appender-ref ref="EMAIL" />
+	</root>
+
+</configuration>
+
