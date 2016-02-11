@@ -10,9 +10,21 @@
 	</appender>
 	
 	<appender name="async" class="ch.qos.logback.classic.AsyncAppender">
+		<!-- 
+		Queue의 크기중에 비어있는 부분이 discardingThreshold 비율 이하인 경우 INFO 레벨 이하의 로그는 저장하지 않는다.
+		모든 로그 이벤트를 처리하기 위해서는 0으로 discardingThreshold을 설정합니다 
+		 -->
 		<discardingThreshold>0</discardingThreshold>
-	      <queueSize>10000</queueSize>
-	      <appender-ref ref="STDOUT" />
+		<!-- 큐의 최대 용량. 기본적으로 QUEUESIZE는 256으로 설정됩니다. -->
+	    <queueSize>10000</queueSize>
+	    <!-- 해당 로그 이벤트 정보를 Queue에 추가하는 시점에 로그를 호출한 정보 (callerData)를 추출할지 여부를 결정하는 속성
+	    <includeCallerData>boolean</includeCallerData>
+	     -->
+	     <!--
+	     (밀리 초) 큐의 최대 flush timeout 시간을 지정합니다.처리 할 수​​없는 이벤트가 삭제됩니다.
+	     <maxFlushTime>int</maxFlushTime> 
+	      -->
+	    <appender-ref ref="STDOUT" />
 	</appender>
 
 	<logger name="com.hello" level="debug" additivity="false">

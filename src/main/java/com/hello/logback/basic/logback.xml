@@ -3,9 +3,25 @@
 
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
 		<layout class="ch.qos.logback.classic.PatternLayout">
+			  <encoder>
 		      <Pattern>
+		      	<!--
+		      	%d{yyyy-MM-dd HH:mm:ss} : 년월일 시분초
+		      	%thread : thread name 
+		      	%-5level : log level , -5는 출력 고정폭 값
+		      	%logger{length} :Logger name의 이름, {length}는 자리수
+		      	%msg : log message %message은 alias
+		      	%n : 줄바꿈
+		      	
+		      	org.fusesource.jansi:jansi:1.8 가 필요함.
+                Linux ,Mac OS X 기본적으로 지원함
+                <withJansi>true</withJansi>설정후 사용해야함
+		      	%highlight : log level 별로 color가 다르게 나옴
+		      	-->
 		      	%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n
+		      	
 		      </Pattern>
+		      </encoder>
 		</layout>
 	</appender>
 
