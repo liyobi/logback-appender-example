@@ -28,16 +28,29 @@
 					%d{yyyy-MM-dd HH:mm:ss} %mdc [%thread] %-5level %logger{36} - %msg%n
 				</Pattern>
 			</encoder>
-			<!-- rollingPolicy : rolling이 발생할 때 어떤 작업을 수행할지 결정하는 속성 -->
+			<!-- rollingPolicy : rolling이 발생할 때 어떤 작업을 수행할지 결정하는 속성 
 			<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
 				<FileNamePattern>${LOG_HOME}/${userid}.%i.log.zip</FileNamePattern>
 				<MinIndex>1</MinIndex>
 				<MaxIndex>10</MaxIndex>
-			</rollingPolicy>
-			<!-- triggeringPolicy: 어떤 조건에서 rolling 이벤트가 발생할 지 조건을 결정하는 속성 -->
+			</rollingPolicy>-->
+			<!-- triggeringPolicy: 어떤 조건에서 rolling 이벤트가 발생할 지 조건을 결정하는 속성
 			<triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
 				<MaxFileSize>10MB</MaxFileSize>
-			</triggeringPolicy>
+			</triggeringPolicy>-->
+			
+			<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			    <!-- rollover daily -->
+			    <fileNamePattern>${LOG_HOME}/${userid}-%d{yyyy-MM-dd}.%i.txt</fileNamePattern>
+			    <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+			      <!-- or whenever the file size reaches 100MB -->
+			      <maxFileSize>10MB</maxFileSize>
+			    </timeBasedFileNamingAndTriggeringPolicy>
+			    
+			    <!-- maximum number of archive files to keep, deleting older files. For example, if you specify monthly rollover, and set maxHistory to 6, then 6 months worth of archives files will be kept with files older than 6 months deleted. -->
+			    <maxHistory>6</maxHistory>
+			    
+			 </rollingPolicy>
 			
 			
 		  </appender>
